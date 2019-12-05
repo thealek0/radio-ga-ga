@@ -200,23 +200,23 @@
         "Alternative" : "http://ic2.101.ru:8000/a176",
         "House" : "http://ic2.101.ru:8000/c6_5",
         "Аnekdoty'" : "http://ic2.101.ru:8000/c3_5",
-        // "Pervoe Muzukalnoe" : "http://ic2.101.ru:8000/c18_15", DO NOT WORKING!!!! BLYATs
+        // "Pervoe Muzukalnoe" : "http://ic2.101.ru:8000/c18_15", DO NOT WORKING!!!!
         "Instrumental" : "http://ic2.101.ru:8000/a28",
-        // "Gangsta & Hip-Hop" : "http://ic2.101.ru:8000/c14_11", DO NOT WORKING!!!! BLYAT
+        // "Gangsta & Hip-Hop" : "http://ic2.101.ru:8000/c14_11", DO NOT WORKING!!!! 
         "Sex" : "http://ic2.101.ru:8000/a27",
         "Rock" : "http://ic2.101.ru:8000/c1_4",
-        // "USSR 50-70" : "http://ic2.101.ru:8000/c12_1", DO NOT WORKING!!!! BLYAT
+        // "USSR 50-70" : "http://ic2.101.ru:8000/c12_1", DO NOT WORKING!!!! 
         "Chillstep" : "http://ic2.101.ru:8000/a260",
-        // "Love Songs" : "http://ic2.101.ru:8000/c9_1", DO NOT WORKING!!!! BLYAT
+        // "Love Songs" : "http://ic2.101.ru:8000/c9_1", DO NOT WORKING!!!! 
         "Prikosnovenie" : "http://ic2.101.ru:8000/c7_29",
         "Soulful House" : "http://ic2.101.ru:8000/c13_29",
         "Hot Traxx" : "http://ic2.101.ru:8000/c4_4",
         "Leto Non-Stop" : "http://ic2.101.ru:8000/c13_16",
-        // "Jazz" : "http://ic2.101.ru:8000/c10_5", DO NOT WORKING!!!! BLYAT
-        // "Swing" : "http://ic2.101.ru:8000/c13_4", DO NOT WORKING!!!! BLYAT
-        // "90's Gold" : "http://ic2.101.ru:8000/c6_2", DO NOT WORKING!!!! BLYAT
+        // "Jazz" : "http://ic2.101.ru:8000/c10_5", DO NOT WORKING!!!! 
+        // "Swing" : "http://ic2.101.ru:8000/c13_4", DO NOT WORKING!!!! 
+        // "90's Gold" : "http://ic2.101.ru:8000/c6_2", DO NOT WORKING!!!! 
         "Klassika Zhanra" : "http://ic2.101.ru:8000/c4_1",
-        // "Russian Rap" : "http://ic2.101.ru:8000/c1_3", DO NOT WORKING!!!! BLYAT
+        // "Russian Rap" : "http://ic2.101.ru:8000/c1_3", DO NOT WORKING!!!! 
         "Blues" : "http://ic2.101.ru:8000/a76",
         "Drum & Bass" : "http://ic2.101.ru:8000/a6",
         "La Costa Latina" : "http://ic2.101.ru:8000/c7_39",
@@ -227,9 +227,9 @@
         "Techno" : "http://ic2.101.ru:8000/c17_3",
         "Ambient" : "http://ic2.101.ru:8000/a23",
         "Russian Songs" : "http://ic2.101.ru:8000/c1_1",
-        // "Mainstream" : "http://ic2.101.ru:8000/c7_2", DO NOT WORKING!!!! BLYAT
+        // "Mainstream" : "http://ic2.101.ru:8000/c7_2", DO NOT WORKING!!!! 
         "Golden 70's" : "http://ic2.101.ru:8000/a192",
-        // "VIА" : "http://ic2.101.ru:8000/c3_1", DO NOT WORKING!!!! BLYAT
+        // "VIА" : "http://ic2.101.ru:8000/c3_1", DO NOT WORKING!!!! 
         "Italo Disco" : "http://ic2.101.ru:8000/a161"
       }
       const select = document.getElementById('selectStations');
@@ -245,12 +245,6 @@
           audio.src = stations[key];
         }
       })
-
-      select.addEventListener('change', (event) => {
-        audio.src = event.target.value;
-        audio.load();
-        audio.play();
-      });
 
       select.addEventListener('change', (event) => {
         audio.src = event.target.value;
