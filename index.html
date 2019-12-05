@@ -137,7 +137,9 @@
       #colored {
         width: 100%;
         height: 100%;
-        background: linear-gradient(45deg, #018085, transparent);
+        /* TODO: Need fixed transition animations */
+        /* transition: background-image 1.5s ease; */
+        transition: background-color 1.5s ease-out;
         position: absolute;
         opacity: 0.8;
       }
@@ -153,14 +155,33 @@
         filter: blur(5px);
         -webkit-filter: blur(5px);
       }
-      body {
+      .body {
+        width: 100%;
         height: 100%;
+      }
+      .content {
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        padding: 24px;
       }
-
+      button {
+        position: relative;
+        border-radius: 8px;
+        z-index: 1000;
+        width: 250px;
+        height: auto;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        opacity: 0.4;
+        position: absolute;
+        /* TODO: Need delete margin */
+        margin-bottom: 12px;
+        bottom: 0;
+      }
       .select {
         z-index: 1000;
         width: 300px;
@@ -173,22 +194,23 @@
         opacity: 0.8;
         border: none;
       }
-
       .select:focus, audio:focus {
         outline: none;
       }
-
       audio {
         padding: 30px 0 0 0;
       }
     </style>
     <span id="background"></span>
     <span id="colored"></span>
-    <select id="selectStations" class="select">
-    </select>
-    <audio autoplay preload="auto" title="Radio" controls></audio>
+    <div class="content">
+      <select id="selectStations" class="select">
+      </select>
+      <audio preload="auto" title="Radio" controls></audio>
+      <button id="button">Shine mode - off</button>
+    </div>
     <script>
-      let stations = {
+      const stations = {
         "Chillout" : "http://ic2.101.ru:8000/c15_3",
         "Euro Hits" : "http://ic2.101.ru:8000/c16_13",
         "Deep House" : "http://ic2.101.ru:8000/c18_2",
@@ -249,10 +271,13 @@
       const select = document.getElementById('selectStations');
       const audio = document.getElementsByTagName('audio')[0];
       const colored = document.getElementById('colored');
-      const checkbox = document.getElementById('checkbox');
+      const button = document.getElementById('button');
       const background = document.getElementById('background');
+      let interval = null;
 
       background.style.backgroundImage = image.url;
+
+      let mode = false;
 
       Object.keys(stations).forEach((key, index) => {
         const opt = document.createElement('option');
@@ -262,14 +287,20 @@
         if(index === 0) {
           audio.src = stations[key];
         }
-      })
+      });
 
       select.addEventListener('change', (event) => {
+        event.stopPropagation();
         audio.src = event.target.value;
         audio.load();
         audio.play();
         setBackground();
       });
+
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        toggleBacgroundMode();
+      })
 
       function getRandomColor() {
         const simbols = '0123456789ABCDEF';
@@ -285,7 +316,21 @@
 
       function setBackground() {
         colored.style.backgroundColor = getRandomColor();
-        colored.style.backgroundImage = `linear-gradient(45deg, ${getRandomColor()}, transparent)`
+        // colored.style.backgroundImage = `linear-gradient(45deg, ${getRandomColor()}, transparent)`;
+        // TODO: Need fixed transition animations
+      }
+      setBackground();
+
+      function toggleBacgroundMode() {
+        if (mode) {
+          mode = false;
+          button.innerHTML = 'Shine mode - off';
+          clearInterval(interval);
+          return
+        }
+        interval = setInterval(setBackground, 750);
+        button.innerHTML = 'Shine mode - on';
+        mode = true;
       }
     </script>
   </body>
