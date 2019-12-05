@@ -174,84 +174,107 @@
         padding: 30px 0 0 0;
       }
     </style>
-    <span></span>
+    <span id="background"></span>
     <select id="selectStations" class="select">
     </select>
     <audio autoplay preload="auto" title="Radio" controls></audio>
     <script>
-        let stations = {
-          "Chillout" : "http://ic2.101.ru:8000/c15_3",
-          "Euro Hits" : "http://ic2.101.ru:8000/c16_13",
-          "Deep House" : "http://ic2.101.ru:8000/c18_2",
-          "Disco 80" : "http://ic2.101.ru:8000/a1",
-          "Russian Dance" : "http://ic2.101.ru:8000/c4_6",
-          "Trance" : "http://ic2.101.ru:8000/c13_3",
-          "Russian Rock" : "http://ic2.101.ru:8000/c1_2",
-          "Disco 90" : "http://ic2.101.ru:8000/a74",
-          "Office Lounge" : "http://ic2.101.ru:8000/a30",
-          "Smooth Jazz" : "http://ic2.101.ru:8000/c2_3",
-          "Autoradio" : "http://ic2.101.ru:8000/a2",
-          "Club Dance" : "http://ic2.101.ru:8000/c4_2",
-          "Shanson" : "http://ic2.101.ru:8000/a50",
-          "New Age" : "http://ic2.101.ru:8000/a120",
-          "Russia Top 50" : "http://ic2.101.ru:8000/a34",
-          "Rock Hits" : "http://ic2.101.ru:8000/a160",
-          "Diskoteka USSR" : "http://ic2.101.ru:8000/a144",
-          "Alternative" : "http://ic2.101.ru:8000/a176",
-          "House" : "http://ic2.101.ru:8000/c6_5",
-          "Аnekdoty'" : "http://ic2.101.ru:8000/c3_5",
-          // "Pervoe Muzukalnoe" : "http://ic2.101.ru:8000/c18_15", DO NOT WORKING!!!! BLYATs
-          "Instrumental" : "http://ic2.101.ru:8000/a28",
-          // "Gangsta & Hip-Hop" : "http://ic2.101.ru:8000/c14_11", DO NOT WORKING!!!! BLYAT
-          "Sex" : "http://ic2.101.ru:8000/a27",
-          "Rock" : "http://ic2.101.ru:8000/c1_4",
-          // "USSR 50-70" : "http://ic2.101.ru:8000/c12_1", DO NOT WORKING!!!! BLYAT
-          "Chillstep" : "http://ic2.101.ru:8000/a260",
-          // "Love Songs" : "http://ic2.101.ru:8000/c9_1", DO NOT WORKING!!!! BLYAT
-          "Prikosnovenie" : "http://ic2.101.ru:8000/c7_29",
-          "Soulful House" : "http://ic2.101.ru:8000/c13_29",
-          "Hot Traxx" : "http://ic2.101.ru:8000/c4_4",
-          "Leto Non-Stop" : "http://ic2.101.ru:8000/c13_16",
-          // "Jazz" : "http://ic2.101.ru:8000/c10_5", DO NOT WORKING!!!! BLYAT
-          // "Swing" : "http://ic2.101.ru:8000/c13_4", DO NOT WORKING!!!! BLYAT
-          // "90's Gold" : "http://ic2.101.ru:8000/c6_2", DO NOT WORKING!!!! BLYAT
-          "Klassika Zhanra" : "http://ic2.101.ru:8000/c4_1",
-          // "Russian Rap" : "http://ic2.101.ru:8000/c1_3", DO NOT WORKING!!!! BLYAT
-          "Blues" : "http://ic2.101.ru:8000/a76",
-          "Drum & Bass" : "http://ic2.101.ru:8000/a6",
-          "La Costa Latina" : "http://ic2.101.ru:8000/c7_39",
-          "Progressive" : "http://ic2.101.ru:8000/c8_4",
-          "Tech House" : "http://ic2.101.ru:8000/c18_5",
-          "Enigma" : "http://ic2.101.ru:8000/a175",
-          "Acoustic" : "http://ic2.101.ru:8000/c16_34",
-          "Techno" : "http://ic2.101.ru:8000/c17_3",
-          "Ambient" : "http://ic2.101.ru:8000/a23",
-          "Russian Songs" : "http://ic2.101.ru:8000/c1_1",
-          // "Mainstream" : "http://ic2.101.ru:8000/c7_2", DO NOT WORKING!!!! BLYAT
-          "Golden 70's" : "http://ic2.101.ru:8000/a192",
-          // "VIА" : "http://ic2.101.ru:8000/c3_1", DO NOT WORKING!!!! BLYAT
-          "Italo Disco" : "http://ic2.101.ru:8000/a161"
+      let stations = {
+        "Chillout" : "http://ic2.101.ru:8000/c15_3",
+        "Euro Hits" : "http://ic2.101.ru:8000/c16_13",
+        "Deep House" : "http://ic2.101.ru:8000/c18_2",
+        "Disco 80" : "http://ic2.101.ru:8000/a1",
+        "Russian Dance" : "http://ic2.101.ru:8000/c4_6",
+        "Trance" : "http://ic2.101.ru:8000/c13_3",
+        "Russian Rock" : "http://ic2.101.ru:8000/c1_2",
+        "Disco 90" : "http://ic2.101.ru:8000/a74",
+        "Office Lounge" : "http://ic2.101.ru:8000/a30",
+        "Smooth Jazz" : "http://ic2.101.ru:8000/c2_3",
+        "Autoradio" : "http://ic2.101.ru:8000/a2",
+        "Club Dance" : "http://ic2.101.ru:8000/c4_2",
+        "Shanson" : "http://ic2.101.ru:8000/a50",
+        "New Age" : "http://ic2.101.ru:8000/a120",
+        "Russia Top 50" : "http://ic2.101.ru:8000/a34",
+        "Rock Hits" : "http://ic2.101.ru:8000/a160",
+        "Diskoteka USSR" : "http://ic2.101.ru:8000/a144",
+        "Alternative" : "http://ic2.101.ru:8000/a176",
+        "House" : "http://ic2.101.ru:8000/c6_5",
+        "Аnekdoty'" : "http://ic2.101.ru:8000/c3_5",
+        // "Pervoe Muzukalnoe" : "http://ic2.101.ru:8000/c18_15", DO NOT WORKING!!!! BLYATs
+        "Instrumental" : "http://ic2.101.ru:8000/a28",
+        // "Gangsta & Hip-Hop" : "http://ic2.101.ru:8000/c14_11", DO NOT WORKING!!!! BLYAT
+        "Sex" : "http://ic2.101.ru:8000/a27",
+        "Rock" : "http://ic2.101.ru:8000/c1_4",
+        // "USSR 50-70" : "http://ic2.101.ru:8000/c12_1", DO NOT WORKING!!!! BLYAT
+        "Chillstep" : "http://ic2.101.ru:8000/a260",
+        // "Love Songs" : "http://ic2.101.ru:8000/c9_1", DO NOT WORKING!!!! BLYAT
+        "Prikosnovenie" : "http://ic2.101.ru:8000/c7_29",
+        "Soulful House" : "http://ic2.101.ru:8000/c13_29",
+        "Hot Traxx" : "http://ic2.101.ru:8000/c4_4",
+        "Leto Non-Stop" : "http://ic2.101.ru:8000/c13_16",
+        // "Jazz" : "http://ic2.101.ru:8000/c10_5", DO NOT WORKING!!!! BLYAT
+        // "Swing" : "http://ic2.101.ru:8000/c13_4", DO NOT WORKING!!!! BLYAT
+        // "90's Gold" : "http://ic2.101.ru:8000/c6_2", DO NOT WORKING!!!! BLYAT
+        "Klassika Zhanra" : "http://ic2.101.ru:8000/c4_1",
+        // "Russian Rap" : "http://ic2.101.ru:8000/c1_3", DO NOT WORKING!!!! BLYAT
+        "Blues" : "http://ic2.101.ru:8000/a76",
+        "Drum & Bass" : "http://ic2.101.ru:8000/a6",
+        "La Costa Latina" : "http://ic2.101.ru:8000/c7_39",
+        "Progressive" : "http://ic2.101.ru:8000/c8_4",
+        "Tech House" : "http://ic2.101.ru:8000/c18_5",
+        "Enigma" : "http://ic2.101.ru:8000/a175",
+        "Acoustic" : "http://ic2.101.ru:8000/c16_34",
+        "Techno" : "http://ic2.101.ru:8000/c17_3",
+        "Ambient" : "http://ic2.101.ru:8000/a23",
+        "Russian Songs" : "http://ic2.101.ru:8000/c1_1",
+        // "Mainstream" : "http://ic2.101.ru:8000/c7_2", DO NOT WORKING!!!! BLYAT
+        "Golden 70's" : "http://ic2.101.ru:8000/a192",
+        // "VIА" : "http://ic2.101.ru:8000/c3_1", DO NOT WORKING!!!! BLYAT
+        "Italo Disco" : "http://ic2.101.ru:8000/a161"
+      }
+      const select = document.getElementById('selectStations');
+      const audio = document.getElementsByTagName('audio')[0];
+      const background = document.getElementById('background');
+
+      Object.keys(stations).forEach((key, index) => {
+        const opt = document.createElement('option');
+        opt.value = stations[key];
+        opt.innerHTML = key;
+        select.appendChild(opt);
+        if(index === 0) {
+          audio.src = stations[key];
         }
-        const select = document.getElementById('selectStations');
-        const audio = document.getElementsByTagName('audio')[0];
-  
-        Object.keys(stations).forEach((key, index) => {
-          const opt = document.createElement('option');
-          opt.value = stations[key];
-          opt.innerHTML = key;
-          select.appendChild(opt);
-          if(index === 0) {
-            audio.src = stations[key];
+      })
+
+      select.addEventListener('change', (event) => {
+        audio.src = event.target.value;
+        audio.load();
+        audio.play();
+      });
+
+      select.addEventListener('change', (event) => {
+        audio.src = event.target.value;
+        audio.load();
+        audio.play();
+        setBackground();
+      });
+
+      function getRandomColor() {
+        const simbols = '0123456789ABCDEF';
+        const result = () => {
+          let color = '#';
+          for (let i = 0; i < 6; i++) {
+            color += simbols[Math.floor(Math.random() * 16)];
           }
-        })
+          return color
+        }
+        return result();
+      }
 
-        select.addEventListener('change', (event) => {
-          audio.src = event.target.value;
-          audio.load();
-          audio.play();
-        });
-
-        
-      </script>
+      function setBackground() {
+        background.style.backgroundColor = getRandomColor();
+        background.style.backgroundImage = `linear-gradient(45deg, ${getRandomColor()}, transparent)`
+      }
+    </script>
   </body>
 </html>
