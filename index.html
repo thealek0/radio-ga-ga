@@ -137,12 +137,9 @@
       #colored {
         width: 100%;
         height: 100%;
-        /* TODO: Need fixed transition animations */
-        /* transition: background-image 1.5s ease; */
-        transition: background-color 1.5s ease-out;
         position: absolute;
-        opacity: 0.8;
         z-index: -1;
+        background-color: #37A69B;
       }
       .body {
         width: 100%;
@@ -157,13 +154,22 @@
       }
 
       #play {
-        border-radius: 30px;
         border: none;
         width: 50px;
         height: 50px;
         font-size: 26px;
-        padding: 0px 0px 4px 2px;
+        padding: 0;
         margin-left: 14px;
+        background-color: transparent;
+        cursor: pointer;
+      }
+
+      #play > svg > path {
+        fill: white;
+      }
+
+      #play > #pause-icon {
+        display: none;
       }
 
       #play:focus {
@@ -171,25 +177,25 @@
       }
 
       #button {
-        position: relative;
-        border-radius: 8px;
         z-index: 1000;
-        width: 250px;
         height: auto;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 20px;
         font-weight: 400;
-        opacity: 0.4;
         position: absolute;
         margin-bottom: 12px;
         bottom: 0;
+        border: none;
+        border-radius: 30px;
+        background-color: #ffffff73;
         outline: none;
+        cursor: pointer;
+        padding: 2px 10px;
       }
 
       .select {
         z-index: 1000;
         width: auto;
-        height: auto;
+        height: 50px;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-style: normal;
         font-size: 26px;
@@ -197,7 +203,7 @@
         font-weight: 400;
         border: none;
         padding: 8px 8px 8px 16px;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 30px;
       }
       .select:focus,
@@ -207,11 +213,46 @@
       audio {
         padding: 30px 0 0 0;
       }
+
+      .colorizer {
+        animation: pulse 60s infinite;
+      }
+      
+      @keyframes pulse {
+        0% { background-color: #242326; }
+        6% { background-color: #235940; }
+        12% { background-color: #73D99F; }
+        18% { background-color: #6BBF90; }
+        24% { background-color: #F2EBD5; }
+        30% { background-color: #D91BF2; }
+        36% { background-color: #7708A6; }
+        42% { background-color: #361D59; }
+        48% { background-color: #0388A6; }
+        54% { background-color: #F23847; }
+        60% { background-color: #F25774; }
+        66% { background-color: #26061E; }
+        72% { background-color: #0A6ABF; }
+        78% { background-color: #22CCF2; }
+        84% { background-color: #F2E85E; }
+        100% { background-color: #242326; }
+      }
+
     </style>
     <span id="colored"></span>
     <div class="content">
       <select id="selectStations" class="select"> </select>
-      <button id="play">></button>
+      <button id="play">
+        <svg version="1.1" id="play-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 512 512" xml:space="preserve">
+          <path d="M256,0C114.617,0,0,114.615,0,256s114.617,256,256,256s256-114.615,256-256S397.383,0,256,0z M344.48,269.57l-128,80
+            c-2.59,1.617-5.535,2.43-8.48,2.43c-2.668,0-5.34-0.664-7.758-2.008C195.156,347.172,192,341.82,192,336V176
+            c0-5.82,3.156-11.172,8.242-13.992c5.086-2.836,11.305-2.664,16.238,0.422l128,80c4.676,2.93,7.52,8.055,7.52,13.57
+            S349.156,266.641,344.48,269.57z" />
+        </svg>
+        <svg version="1.1" id="pause-icon" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+          <path d="m256 0c-141.39 0-256 114.62-256 255.99 0 141.39 114.61 256.01 256 256.01s256-114.62 256-256.01c-.0128-141.38-114.63-255.99-256-255.99zm-21.343 333.62c0 10.614-8.5909 19.205-19.205 19.205-10.614 0-19.205-8.5912-19.205-19.205v-145.1c0-10.614 8.591-19.205 19.205-19.205 10.614 0 19.205 8.5912 19.205 19.205zm81.083 0c0 10.614-8.5909 19.205-19.205 19.205-10.614 0-19.205-8.5912-19.205-19.205v-145.1c0-10.614 8.591-19.205 19.205-19.205 10.614 0 19.205 8.5912 19.205 19.205z"/>
+        </svg>
+      </button>
       <audio preload="auto"></audio>
       <button id="button">Shine mode - off</button>
     </div>
@@ -306,12 +347,10 @@
       const colored = document.getElementById("colored");
       const button = document.getElementById("button");
       const buttonPlay = document.getElementById("play");
-      const playSymbol = '⏵';
-      const pauseSymbol = '⏸';
+      const playIconElement = document.getElementById("play-icon");
+      const pauseIconElement = document.getElementById("pause-icon");
 
       let isPlaying = false;
-
-      let interval = null;
 
       let mode = false;
       const savedSelection = getSavedSelection();
@@ -350,7 +389,6 @@
         event.stopPropagation();
         audio.src = event.target.value;
         play();
-        setBackground();
         saveSelection(event.target.selectedOptions[0]);
       });
 
@@ -370,47 +408,28 @@
         play();
       });
 
-      buttonPlay.innerText = playSymbol;
-
       function play() {
-        buttonPlay.innerText = pauseSymbol;
+        playIconElement.style.display = 'none';
+        pauseIconElement.style.display = 'block';
         audio.load();
         audio.play();
       }
 
       function pause() {
-        buttonPlay.innerText = playSymbol;
+        playIconElement.style.display = 'block';
+        pauseIconElement.style.display = 'none';
         audio.pause();
       }
-
-      function getRandomColor() {
-        const simbols = "0123456789ABCDEF";
-        const result = () => {
-          let color = "#";
-          for (let i = 0; i < 6; i++) {
-            color += simbols[Math.floor(Math.random() * 16)];
-          }
-          return color;
-        };
-        return result();
-      }
-
-      function setBackground() {
-        colored.style.backgroundColor = getRandomColor();
-        // colored.style.backgroundImage = `linear-gradient(45deg, ${getRandomColor()}, transparent)`;
-        // TODO: Need fixed transition animations
-      }
-      setBackground();
 
       function toggleBacgroundMode() {
         if (mode) {
           mode = false;
           button.innerHTML = "Shine mode - off";
-          clearInterval(interval);
+          colored.setAttribute('class', '');
           return;
         }
-        interval = setInterval(setBackground, 750);
         button.innerHTML = "Shine mode - on";
+        colored.setAttribute('class', 'colorizer');
         mode = true;
       }
 
