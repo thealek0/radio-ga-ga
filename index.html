@@ -134,32 +134,31 @@
       html {
         height: 100%;
       }
+
       #colored {
         width: 100%;
         height: 100%;
         position: absolute;
         z-index: -1;
-        background-color: #37A69B;
+        background-color: #F25774;
       }
-      .body {
+      body {
         width: 100%;
         height: 100%;
       }
       .content {
-        height: 100vh;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: row;
+        flex-direction: column;
       }
 
       #play {
         border: none;
         width: 50px;
         height: 50px;
-        font-size: 26px;
         padding: 0;
-        margin-left: 14px;
         background-color: transparent;
         cursor: pointer;
       }
@@ -188,66 +187,82 @@
         padding: 2px 10px;
       }
 
+      #title {
+        padding: 16px;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 26px;
+        font-weight: 100;
+        text-transform: uppercase;
+      }
       .select {
         z-index: 1000;
         width: auto;
-        height: 50px;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-style: normal;
         font-size: 26px;
-        line-height: 19px;
-        font-weight: 400;
+        font-weight: 600;
         border: none;
-        padding: 8px 8px 8px 16px;
+        padding: 8px 16px 8px 16px;
         background-color: rgba(255, 255, 255, 0.9);
         border-radius: 30px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-align-last: center;
+        text-transform: uppercase;
       }
-      .select:focus,
-      audio:focus {
+      .select:focus {
         outline: none;
       }
-      audio {
-        padding: 30px 0 0 0;
+
+      #player {
+        padding: 32px;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .colorizer {
-        animation: pulse 60s infinite;
+        animation: pulse 30s infinite;
       }
       
       @keyframes pulse {
-        0% { background-color: #242326; }
+        0% { background-color: #F25774; }
         6% { background-color: #235940; }
         12% { background-color: #73D99F; }
         18% { background-color: #6BBF90; }
         24% { background-color: #F2EBD5; }
         30% { background-color: #D91BF2; }
         36% { background-color: #7708A6; }
-        42% { background-color: #361D59; }
+        42% { background-color: #22CCF2; }
         48% { background-color: #0388A6; }
         54% { background-color: #F23847; }
         60% { background-color: #F25774; }
-        66% { background-color: #26061E; }
+        66% { background-color: #D91BF2; }
         72% { background-color: #0A6ABF; }
         78% { background-color: #22CCF2; }
         84% { background-color: #F2E85E; }
-        100% { background-color: #242326; }
+        100% { background-color: #6BBF90; }
       }
 
     </style>
+    <audio preload="auto"></audio>
     <span id="colored"></span>
     <div class="content">
+      <div id="title"></div>
       <select id="selectStations" class="select"> </select>
-      <button id="play">
-        <svg id="play-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-          <path d="m256 0c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256z" style="fill:#ffffff"/>
-          <path d="m210 162c-2.8071-.0743-5.6328.59177-8.1758 2.0098-5.086 2.82-8.2422 8.1722-8.2422 13.992v160c0 5.82 3.1562 11.172 8.2422 13.992 2.418 1.344 5.0898 2.0078 7.7578 2.0078 2.945 0 5.8905-.81269 8.4805-2.4297l128-80c4.676-2.929 7.5195-8.0553 7.5195-13.57s-2.8435-10.64-7.5195-13.57l-128-80c-2.4665-1.543-5.2554-2.3574-8.0625-2.4316z" style="fill:#000000"/>
-        </svg>
-        <svg id="pause-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-          <path d="m256 0c-141.39 0-256 114.62-256 255.99 0 141.39 114.61 256.01 256 256.01s256-114.62 256-256.01c-.0128-141.38-114.63-255.99-256-255.99z" fill="#ffffff"/>
-          <path d="m215 168c-10.614 0-19.205 8.591-19.205 19.205v145.1c0 10.614 8.5912 19.205 19.205 19.205 10.614 0 19.203-8.591 19.203-19.205v-145.1c0-10.614-8.5893-19.205-19.203-19.205zm81.082 0c-10.614 0-19.205 8.591-19.205 19.205v145.1c0 10.614 8.5912 19.205 19.205 19.205 10.614 0 19.205-8.591 19.205-19.205v-145.1c0-10.614-8.5912-19.205-19.205-19.205z" fill="black"/>
-        </svg>
-      </button>
-      <audio preload="auto"></audio>
+      <div id="player">
+       
+        <button id="play">
+          <svg id="play-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <path d="m256 0c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256z" style="fill:#ffffff"/>
+            <path d="m210 162c-2.8071-.0743-5.6328.59177-8.1758 2.0098-5.086 2.82-8.2422 8.1722-8.2422 13.992v160c0 5.82 3.1562 11.172 8.2422 13.992 2.418 1.344 5.0898 2.0078 7.7578 2.0078 2.945 0 5.8905-.81269 8.4805-2.4297l128-80c4.676-2.929 7.5195-8.0553 7.5195-13.57s-2.8435-10.64-7.5195-13.57l-128-80c-2.4665-1.543-5.2554-2.3574-8.0625-2.4316z" style="fill:#000000"/>
+          </svg>
+          <svg id="pause-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <path d="m256 0c-141.39 0-256 114.62-256 255.99 0 141.39 114.61 256.01 256 256.01s256-114.62 256-256.01c-.0128-141.38-114.63-255.99-256-255.99z" fill="#ffffff"/>
+            <path d="m215 168c-10.614 0-19.205 8.591-19.205 19.205v145.1c0 10.614 8.5912 19.205 19.205 19.205 10.614 0 19.203-8.591 19.203-19.205v-145.1c0-10.614-8.5893-19.205-19.203-19.205zm81.082 0c-10.614 0-19.205 8.591-19.205 19.205v145.1c0 10.614 8.5912 19.205 19.205 19.205 10.614 0 19.205-8.591 19.205-19.205v-145.1c0-10.614-8.5912-19.205-19.205-19.205z" fill="black"/>
+          </svg>
+        </button>
+      </div>
       <button id="button">Shine mode - off</button>
     </div>
     <script>
@@ -336,6 +351,7 @@
       ];
 
       const selectionStorageKey = 'currentStation';
+      const title = document.getElementById("title");
       const select = document.getElementById("selectStations");
       const audio = document.getElementsByTagName("audio")[0];
       const colored = document.getElementById("colored");
@@ -366,6 +382,7 @@
           ) {
             opt.selected = true;
             initAudioValue = stations[key];
+            title.innerText = optionGroup.label;
           }
           optionGroup.appendChild(opt);
         });
@@ -430,6 +447,7 @@
       function saveSelection(item) {
         const siteName = item.parentElement.label;
         const stationName = item.label;
+        title.innerText = siteName;
         localStorage.setItem(
           selectionStorageKey, 
           JSON.stringify({ siteName, stationName })
