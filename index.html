@@ -390,6 +390,7 @@
       }
 
       if(!initAudioValue) {
+        title.innerText = sites[0].name;
         const firstStationKey = Object.keys(sites[0].stations)[0];
         initAudioValue = sites[0].stations[firstStationKey];
       }
