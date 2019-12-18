@@ -1,355 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Radio GA GA</title>
-  </head>
-  <body>
-    <style>
-      html,
-      body,
-      div,
-      span,
-      applet,
-      object,
-      iframe,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      blockquote,
-      pre,
-      a,
-      abbr,
-      acronym,
-      address,
-      big,
-      cite,
-      code,
-      del,
-      dfn,
-      em,
-      img,
-      ins,
-      kbd,
-      q,
-      s,
-      samp,
-      small,
-      strike,
-      strong,
-      sub,
-      sup,
-      tt,
-      var,
-      b,
-      u,
-      i,
-      center,
-      dl,
-      dt,
-      dd,
-      ol,
-      ul,
-      li,
-      fieldset,
-      form,
-      label,
-      legend,
-      table,
-      caption,
-      tbody,
-      tfoot,
-      thead,
-      tr,
-      th,
-      td,
-      article,
-      aside,
-      canvas,
-      details,
-      embed,
-      figure,
-      figcaption,
-      footer,
-      header,
-      hgroup,
-      menu,
-      nav,
-      output,
-      ruby,
-      section,
-      summary,
-      time,
-      mark,
-      audio,
-      video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-      }
-      article,
-      aside,
-      details,
-      figcaption,
-      figure,
-      footer,
-      header,
-      hgroup,
-      menu,
-      nav,
-      section {
-        display: block;
-      }
-      body {
-        line-height: 1;
-      }
-      ol,
-      ul {
-        list-style: none;
-      }
-      blockquote,
-      q {
-        quotes: none;
-      }
-      blockquote:before,
-      blockquote:after,
-      q:before,
-      q:after {
-        content: "";
-        content: none;
-      }
-      table {
-        border-collapse: collapse;
-        border-spacing: 0;
-      }
-      html {
-        height: 100%;
-      }
-      #colored {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        background-color: #37A69B;
-      }
-      .body {
-        width: 100%;
-        height: 100%;
-      }
-      .content {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Radio GA GA</title>
+</head>
+
+<body>
+  <style>
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+      display: block;
+    }
+
+    body {
+      line-height: 1;
+    }
+
+    ol,
+    ul {
+      list-style: none;
+    }
+
+    blockquote,
+    q {
+      quotes: none;
+    }
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+      content: "";
+      content: none;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    #colored {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+      background-color: #f25774;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    .content {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #play {
+      border: none;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    #play>#pause-icon {
+      display: none;
+    }
+
+    #play:focus {
+      outline: none;
+    }
+
+    #button {
+      z-index: 1000;
+      height: auto;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      position: absolute;
+      margin-bottom: 12px;
+      bottom: 0;
+      border: none;
+      border-radius: 30px;
+      background-color: #ffffff73;
+      outline: none;
+      cursor: pointer;
+      padding: 2px 10px;
+    }
+
+    #title {
+      padding: 16px;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 26px;
+      font-weight: 100;
+      text-transform: uppercase;
+    }
+
+    .select {
+      z-index: 1000;
+      width: auto;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      border: none;
+      padding: 8px 16px 8px 16px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 30px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-align-last: center;
+      text-transform: uppercase;
+    }
+
+    .select:focus {
+      outline: none;
+    }
+
+    #player {
+      padding: 32px;
+      flex-direction: row;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .colorizer {
+      animation: pulse 30s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        background-color: #f25774;
       }
 
-      #play {
-        border: none;
-        width: 50px;
-        height: 50px;
-        font-size: 26px;
-        padding: 0;
-        margin-left: 14px;
-        background-color: transparent;
-        cursor: pointer;
+      6% {
+        background-color: #235940;
       }
 
-      #play > #pause-icon {
-        display: none;
+      12% {
+        background-color: #73d99f;
       }
 
-      #play:focus {
-        outline: none;
+      18% {
+        background-color: #6bbf90;
       }
 
-      #button {
-        z-index: 1000;
-        height: auto;
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        position: absolute;
-        margin-bottom: 12px;
-        bottom: 0;
-        border: none;
-        border-radius: 30px;
-        background-color: #ffffff73;
-        outline: none;
-        cursor: pointer;
-        padding: 2px 10px;
+      24% {
+        background-color: #f2ebd5;
       }
 
-      .select {
-        z-index: 1000;
-        width: auto;
-        height: 50px;
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-style: normal;
-        font-size: 26px;
-        line-height: 19px;
-        font-weight: 400;
-        border: none;
-        padding: 8px 8px 8px 16px;
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 30px;
-      }
-      .select:focus,
-      audio:focus {
-        outline: none;
-      }
-      audio {
-        padding: 30px 0 0 0;
+      30% {
+        background-color: #d91bf2;
       }
 
-      .colorizer {
-        animation: pulse 60s infinite;
-      }
-      
-      @keyframes pulse {
-        0% { background-color: #242326; }
-        6% { background-color: #235940; }
-        12% { background-color: #73D99F; }
-        18% { background-color: #6BBF90; }
-        24% { background-color: #F2EBD5; }
-        30% { background-color: #D91BF2; }
-        36% { background-color: #7708A6; }
-        42% { background-color: #361D59; }
-        48% { background-color: #0388A6; }
-        54% { background-color: #F23847; }
-        60% { background-color: #F25774; }
-        66% { background-color: #26061E; }
-        72% { background-color: #0A6ABF; }
-        78% { background-color: #22CCF2; }
-        84% { background-color: #F2E85E; }
-        100% { background-color: #242326; }
+      36% {
+        background-color: #7708a6;
       }
 
-    </style>
-    <span id="colored"></span>
-    <div class="content">
-      <select id="selectStations" class="select"> </select>
+      42% {
+        background-color: #22ccf2;
+      }
+
+      48% {
+        background-color: #0388a6;
+      }
+
+      54% {
+        background-color: #f23847;
+      }
+
+      60% {
+        background-color: #f25774;
+      }
+
+      66% {
+        background-color: #d91bf2;
+      }
+
+      72% {
+        background-color: #0a6abf;
+      }
+
+      78% {
+        background-color: #22ccf2;
+      }
+
+      84% {
+        background-color: #f2e85e;
+      }
+
+      100% {
+        background-color: #6bbf90;
+      }
+    }
+  </style>
+  <audio preload="none"></audio>
+  <span id="colored"></span>
+  <div class="content">
+    <div id="title"></div>
+    <select id="selectStations" class="select"> </select>
+    <div id="player">
       <button id="play">
-        <svg id="play-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-          <path d="m256 0c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256z" style="fill:#ffffff"/>
-          <path d="m210 162c-2.8071-.0743-5.6328.59177-8.1758 2.0098-5.086 2.82-8.2422 8.1722-8.2422 13.992v160c0 5.82 3.1562 11.172 8.2422 13.992 2.418 1.344 5.0898 2.0078 7.7578 2.0078 2.945 0 5.8905-.81269 8.4805-2.4297l128-80c4.676-2.929 7.5195-8.0553 7.5195-13.57s-2.8435-10.64-7.5195-13.57l-128-80c-2.4665-1.543-5.2554-2.3574-8.0625-2.4316z" style="fill:#000000"/>
         </svg>
-        <svg id="pause-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-          <path d="m256 0c-141.39 0-256 114.62-256 255.99 0 141.39 114.61 256.01 256 256.01s256-114.62 256-256.01c-.0128-141.38-114.63-255.99-256-255.99z" fill="#ffffff"/>
-          <path d="m215 168c-10.614 0-19.205 8.591-19.205 19.205v145.1c0 10.614 8.5912 19.205 19.205 19.205 10.614 0 19.203-8.591 19.203-19.205v-145.1c0-10.614-8.5893-19.205-19.203-19.205zm81.082 0c-10.614 0-19.205 8.591-19.205 19.205v145.1c0 10.614 8.5912 19.205 19.205 19.205 10.614 0 19.205-8.591 19.205-19.205v-145.1c0-10.614-8.5912-19.205-19.205-19.205z" fill="black"/>
+        <svg id="play-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+          <path d="m256 0c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256z"
+            style="fill:#ffffff" />
+          <path
+            d="m210 162c-2.8071-.0743-5.6328.59177-8.1758 2.0098-5.086 2.82-8.2422 8.1722-8.2422 13.992v160c0 5.82 3.1562 11.172 8.2422 13.992 2.418 1.344 5.0898 2.0078 7.7578 2.0078 2.945 0 5.8905-.81269 8.4805-2.4297l128-80c4.676-2.929 7.5195-8.0553 7.5195-13.57s-2.8435-10.64-7.5195-13.57l-128-80c-2.4665-1.543-5.2554-2.3574-8.0625-2.4316z"
+            style="fill:#000000" />
+        </svg>
+        <svg id="pause-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m256 0c-141.39 0-256 114.62-256 255.99 0 141.39 114.61 256.01 256 256.01s256-114.62 256-256.01c-.0128-141.38-114.63-255.99-256-255.99z"
+            fill="#ffffff" />
+          <path
+            d="m215 168c-10.614 0-19.205 8.591-19.205 19.205v145.1c0 10.614 8.5912 19.205 19.205 19.205 10.614 0 19.203-8.591 19.203-19.205v-145.1c0-10.614-8.5893-19.205-19.203-19.205zm81.082 0c-10.614 0-19.205 8.591-19.205 19.205v145.1c0 10.614 8.5912 19.205 19.205 19.205 10.614 0 19.205-8.591 19.205-19.205v-145.1c0-10.614-8.5912-19.205-19.205-19.205z"
+            fill="black" />
+        </svg>
+        <svg id="loader" width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="black">
+          <g fill="none" fill-rule="evenodd" stroke-width="2">
+            <circle stroke="none" fill="white" cx="25" cy="25" r="25"></circle>
+            <circle cx="25" cy="25" r="1">
+              <animate attributeName="r" begin="0s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1"
+                keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite" />
+              <animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1; 0" calcMode="spline"
+                keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite" />
+            </circle>
+            <circle cx="25" cy="25" r="1">
+              <animate attributeName="r" begin="-0.9s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1"
+                keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite" />
+              <animate attributeName="stroke-opacity" begin="-0.9s" dur="1.8s" values="1; 0" calcMode="spline"
+                keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite" />
+            </circle>
+          </g>
         </svg>
       </button>
-      <audio preload="auto"></audio>
-      <button id="button">Shine mode - off</button>
     </div>
-    <script>
-      const sites = [
-        {
-          name: "101.ru",
-          stations: {
-            Chillout: "http://ic2.101.ru:8000/c15_3",
-            "Euro Hits": "http://ic2.101.ru:8000/c16_13",
-            "Deep House": "http://ic2.101.ru:8000/c18_2",
-            "Disco 80": "http://ic2.101.ru:8000/a1",
-            "Russian Dance": "http://ic2.101.ru:8000/c4_6",
-            Trance: "http://ic2.101.ru:8000/c13_3",
-            "Russian Rock": "http://ic2.101.ru:8000/c1_2",
-            "Disco 90": "http://ic2.101.ru:8000/a74",
-            "Office Lounge": "http://ic2.101.ru:8000/a30",
-            "Smooth Jazz": "http://ic2.101.ru:8000/c2_3",
-            Autoradio: "http://ic2.101.ru:8000/a2",
-            "Club Dance": "http://ic2.101.ru:8000/c4_2",
-            Shanson: "http://ic2.101.ru:8000/a50",
-            "New Age": "http://ic2.101.ru:8000/a120",
-            "Russia Top 50": "http://ic2.101.ru:8000/a34",
-            "Rock Hits": "http://ic2.101.ru:8000/a160",
-            "Diskoteka USSR": "http://ic2.101.ru:8000/a144",
-            Alternative: "http://ic2.101.ru:8000/a176",
-            House: "http://ic2.101.ru:8000/c6_5",
-            "Аnekdoty'": "http://ic2.101.ru:8000/c3_5",
-            // "Pervoe Muzukalnoe" : "http://ic2.101.ru:8000/c18_15", DO NOT WORKING!!!!
-            Instrumental: "http://ic2.101.ru:8000/a28",
-            // "Gangsta & Hip-Hop" : "http://ic2.101.ru:8000/c14_11", DO NOT WORKING!!!!
-            Sex: "http://ic2.101.ru:8000/a27",
-            Rock: "http://ic2.101.ru:8000/c1_4",
-            // "USSR 50-70" : "http://ic2.101.ru:8000/c12_1", DO NOT WORKING!!!!
-            Chillstep: "http://ic2.101.ru:8000/a260",
-            // "Love Songs" : "http://ic2.101.ru:8000/c9_1", DO NOT WORKING!!!!
-            Prikosnovenie: "http://ic2.101.ru:8000/c7_29",
-            "Soulful House": "http://ic2.101.ru:8000/c13_29",
-            "Hot Traxx": "http://ic2.101.ru:8000/c4_4",
-            "Leto Non-Stop": "http://ic2.101.ru:8000/c13_16",
-            // "Jazz" : "http://ic2.101.ru:8000/c10_5", DO NOT WORKING!!!!
-            // "Swing" : "http://ic2.101.ru:8000/c13_4", DO NOT WORKING!!!!
-            // "90's Gold" : "http://ic2.101.ru:8000/c6_2", DO NOT WORKING!!!!
-            "Klassika Zhanra": "http://ic2.101.ru:8000/c4_1",
-            // "Russian Rap" : "http://ic2.101.ru:8000/c1_3", DO NOT WORKING!!!!
-            Blues: "http://ic2.101.ru:8000/a76",
-            "Drum & Bass": "http://ic2.101.ru:8000/a6",
-            "La Costa Latina": "http://ic2.101.ru:8000/c7_39",
-            Progressive: "http://ic2.101.ru:8000/c8_4",
-            "Tech House": "http://ic2.101.ru:8000/c18_5",
-            Enigma: "http://ic2.101.ru:8000/a175",
-            Acoustic: "http://ic2.101.ru:8000/c16_34",
-            Techno: "http://ic2.101.ru:8000/c17_3",
-            Ambient: "http://ic2.101.ru:8000/a23",
-            "Russian Songs": "http://ic2.101.ru:8000/c1_1",
-            // "Mainstream" : "http://ic2.101.ru:8000/c7_2", DO NOT WORKING!!!!
-            "Golden 70's": "http://ic2.101.ru:8000/a192",
-            // "VIА" : "http://ic2.101.ru:8000/c3_1", DO NOT WORKING!!!!
-            "Italo Disco": "http://ic2.101.ru:8000/a161"
-          }
-        },
-        {
-          name: "radiorecord.ru",
-          stations: {
-            Chillout: "http://air.radiorecord.ru:805/chil_320"
-          }
-        },
-        {
-          name: "streamguys.net",
-          stations: {
-            "Solo piano" : "http://pianosolo.streamguys.net/live",
-          }
-        },
-        {
-          name: "shoutca.st",
-          stations: {
-            "LoFi Chill" : "http://hyades.shoutca.st:8043/stream",
-          }
-        },
-        {
-          name: "hostingradio.ru",
-          stations: {
-            "Classic gold" : "http://jfm1.hostingradio.ru:14536/gcstream.mp3",
-            "Jazz legends" : "http://jfm1.hostingradio.ru:14536/jlstream.mp3",
-          }
+    <button id="button">Shine mode - off</button>
+  </div>
+  <script>
+    const sites = [
+      {
+        name: "101.ru",
+        stations: {
+          Chillout: "http://ic2.101.ru:8000/c15_3",
+          "Euro Hits": "http://ic2.101.ru:8000/c16_13",
+          "Deep House": "http://ic2.101.ru:8000/c18_2",
+          "Disco 80": "http://ic2.101.ru:8000/a1",
+          "Russian Dance": "http://ic2.101.ru:8000/c4_6",
+          Trance: "http://ic2.101.ru:8000/c13_3",
+          "Russian Rock": "http://ic2.101.ru:8000/c1_2",
+          "Disco 90": "http://ic2.101.ru:8000/a74",
+          "Office Lounge": "http://ic2.101.ru:8000/a30",
+          "Smooth Jazz": "http://ic2.101.ru:8000/c2_3",
+          Autoradio: "http://ic2.101.ru:8000/a2",
+          "Club Dance": "http://ic2.101.ru:8000/c4_2",
+          Shanson: "http://ic2.101.ru:8000/a50",
+          "New Age": "http://ic2.101.ru:8000/a120",
+          "Russia Top 50": "http://ic2.101.ru:8000/a34",
+          "Rock Hits": "http://ic2.101.ru:8000/a160",
+          "Diskoteka USSR": "http://ic2.101.ru:8000/a144",
+          Alternative: "http://ic2.101.ru:8000/a176",
+          House: "http://ic2.101.ru:8000/c6_5",
+          "Аnekdoty'": "http://ic2.101.ru:8000/c3_5",
+          // "Pervoe Muzukalnoe" : "http://ic2.101.ru:8000/c18_15", DO NOT WORKING!!!!
+          Instrumental: "http://ic2.101.ru:8000/a28",
+          // "Gangsta & Hip-Hop" : "http://ic2.101.ru:8000/c14_11", DO NOT WORKING!!!!
+          Sex: "http://ic2.101.ru:8000/a27",
+          Rock: "http://ic2.101.ru:8000/c1_4",
+          // "USSR 50-70" : "http://ic2.101.ru:8000/c12_1", DO NOT WORKING!!!!
+          Chillstep: "http://ic2.101.ru:8000/a260",
+          // "Love Songs" : "http://ic2.101.ru:8000/c9_1", DO NOT WORKING!!!!
+          Prikosnovenie: "http://ic2.101.ru:8000/c7_29",
+          "Soulful House": "http://ic2.101.ru:8000/c13_29",
+          "Hot Traxx": "http://ic2.101.ru:8000/c4_4",
+          "Leto Non-Stop": "http://ic2.101.ru:8000/c13_16",
+          // "Jazz" : "http://ic2.101.ru:8000/c10_5", DO NOT WORKING!!!!
+          // "Swing" : "http://ic2.101.ru:8000/c13_4", DO NOT WORKING!!!!
+          // "90's Gold" : "http://ic2.101.ru:8000/c6_2", DO NOT WORKING!!!!
+          "Klassika Zhanra": "http://ic2.101.ru:8000/c4_1",
+          // "Russian Rap" : "http://ic2.101.ru:8000/c1_3", DO NOT WORKING!!!!
+          Blues: "http://ic2.101.ru:8000/a76",
+          "Drum & Bass": "http://ic2.101.ru:8000/a6",
+          "La Costa Latina": "http://ic2.101.ru:8000/c7_39",
+          Progressive: "http://ic2.101.ru:8000/c8_4",
+          "Tech House": "http://ic2.101.ru:8000/c18_5",
+          Enigma: "http://ic2.101.ru:8000/a175",
+          Acoustic: "http://ic2.101.ru:8000/c16_34",
+          Techno: "http://ic2.101.ru:8000/c17_3",
+          Ambient: "http://ic2.101.ru:8000/a23",
+          "Russian Songs": "http://ic2.101.ru:8000/c1_1",
+          // "Mainstream" : "http://ic2.101.ru:8000/c7_2", DO NOT WORKING!!!!
+          "Golden 70's": "http://ic2.101.ru:8000/a192",
+          // "VIА" : "http://ic2.101.ru:8000/c3_1", DO NOT WORKING!!!!
+          "Italo Disco": "http://ic2.101.ru:8000/a161"
         }
-      ];
+      },
+      {
+        name: "radiorecord.ru",
+        stations: {
+          Chillout: "http://air.radiorecord.ru:805/chil_320"
+        }
+      },
+      {
+        name: "streamguys.net",
+        stations: {
+          "Solo piano": "http://pianosolo.streamguys.net/live"
+        }
+      },
+      {
+        name: "shoutca.st",
+        stations: {
+          "LoFi Chill": "http://hyades.shoutca.st:8043/stream"
+        }
+      },
+      {
+        name: "hostingradio.ru",
+        stations: {
+          "Classic gold": "http://jfm1.hostingradio.ru:14536/gcstream.mp3",
+          "Jazz legends": "http://jfm1.hostingradio.ru:14536/jlstream.mp3"
+        }
+      }
+    ];
 
-      const selectionStorageKey = 'currentStation';
-      const select = document.getElementById("selectStations");
-      const audio = document.getElementsByTagName("audio")[0];
-      const colored = document.getElementById("colored");
-      const button = document.getElementById("button");
-      const buttonPlay = document.getElementById("play");
-      const playIconElement = document.getElementById("play-icon");
-      const pauseIconElement = document.getElementById("pause-icon");
+    const selectionStorageKey = "currentStation";
+    const title = document.getElementById("title");
+    const select = document.getElementById("selectStations");
+    const audio = document.getElementsByTagName("audio")[0];
+    const colored = document.getElementById("colored");
+    const button = document.getElementById("button");
+    const buttonPlay = document.getElementById("play");
+    const playIconElement = document.getElementById("play-icon");
+    const pauseIconElement = document.getElementById("pause-icon");
+    const loader = document.getElementById("loader");
 
-      let isPlaying = false;
+    let isPlaying = false;
 
-      let mode = false;
-      const savedSelection = getSavedSelection();
-      let initAudioValue;
+    let mode = false;
+    const savedSelection = getSavedSelection();
+    let initAudioValue;
 
+    init();
+
+    function play() {
+      showPlayButton(false);
+      showPauseButton(true);
+      audio.load();
+      audio.play();
+    }
+
+    function pause() {
+      showPlayButton(true);
+      showPauseButton(false);
+      audio.pause();
+    }
+
+    function showPlayButton(state) {
+      if(isPlaying) {
+        return;
+      }
+
+      if (state) {
+        playIconElement.style.display = "block";
+        return;
+      }
+      playIconElement.style.display = "none";
+    }
+
+    function showPauseButton(state) {
+      if(!isPlaying) {
+        return;
+      }
+
+      if (state) {
+        pauseIconElement.style.display = "block";
+        return;
+      }
+      pauseIconElement.style.display = "none"
+    }
+
+    function showLoader(state) {
+      if (state) {
+        loader.style.display = "block";
+        return;
+      }
+      loader.style.display = "none"
+    }
+
+    function toggleBacgroundMode() {
+      if (mode) {
+        mode = false;
+        button.innerHTML = "Shine mode - off";
+        colored.setAttribute("class", "");
+        return;
+      }
+      button.innerHTML = "Shine mode - on";
+      colored.setAttribute("class", "colorizer");
+      mode = true;
+    }
+
+    function saveSelection(item) {
+      const siteName = item.parentElement.label;
+      const stationName = item.label;
+      title.innerText = siteName;
+      localStorage.setItem(
+        selectionStorageKey,
+        JSON.stringify({ siteName, stationName })
+      );
+    }
+
+    function getSavedSelection() {
+      const data = localStorage.getItem(selectionStorageKey);
+      if (!data) {
+        return;
+      }
+      return JSON.parse(data);
+    }
+
+    function init() {
       for (let i = 0; i < sites.length; i++) {
         const site = sites[i];
         const optionGroup = document.createElement("optgroup");
@@ -359,20 +538,22 @@
           const opt = document.createElement("option");
           opt.value = stations[key];
           opt.innerHTML = key;
-          if(
+          if (
             savedSelection &&
-            savedSelection.siteName === site.name && 
+            savedSelection.siteName === site.name &&
             savedSelection.stationName === key
           ) {
             opt.selected = true;
             initAudioValue = stations[key];
+            title.innerText = optionGroup.label;
           }
           optionGroup.appendChild(opt);
         });
         select.appendChild(optionGroup);
       }
 
-      if(!initAudioValue) {
+      if (!initAudioValue) {
+        title.innerText = sites[0].name;
         const firstStationKey = Object.keys(sites[0].stations)[0];
         initAudioValue = sites[0].stations[firstStationKey];
       }
@@ -393,56 +574,67 @@
 
       buttonPlay.addEventListener("click", event => {
         event.stopPropagation();
-        if(isPlaying) {
-          isPlaying = !isPlaying;
+        if (isPlaying) {
           pause();
+          isPlaying = false;
           return;
         }
-        isPlaying = !isPlaying;
         play();
+        isPlaying = true;
       });
 
-      function play() {
-        playIconElement.style.display = 'none';
-        pauseIconElement.style.display = 'block';
-        audio.load();
-        audio.play();
-      }
+      audio.addEventListener("play", event => {
+        showPlayButton(false);
+        showPauseButton(true);
+      });
 
-      function pause() {
-        playIconElement.style.display = 'block';
-        pauseIconElement.style.display = 'none';
-        audio.pause();
-      }
+      audio.addEventListener("pause", event => {
+        showPlayButton(true);
+        showPauseButton(false);
+      });
 
-      function toggleBacgroundMode() {
-        if (mode) {
-          mode = false;
-          button.innerHTML = "Shine mode - off";
-          colored.setAttribute('class', '');
-          return;
-        }
-        button.innerHTML = "Shine mode - on";
-        colored.setAttribute('class', 'colorizer');
-        mode = true;
-      }
+      audio.addEventListener("ended", event => {
+        showPlayButton(false);
+        showPauseButton(false);
+        showLoader(true);
+      });
 
-      function saveSelection(item) {
-        const siteName = item.parentElement.label;
-        const stationName = item.label;
-        localStorage.setItem(
-          selectionStorageKey, 
-          JSON.stringify({ siteName, stationName })
-        );
-      }
+      audio.addEventListener("seeking", event => {
+        showPlayButton(false);
+        showPauseButton(false);
+        showLoader(true);
+      });
 
-      function getSavedSelection() {
-        const data = localStorage.getItem(selectionStorageKey);
-        if(!data) {
-          return;
-        }
-        return JSON.parse(data);
-      }
-    </script>
-  </body>
+      audio.addEventListener("seeked", event => {
+        showPlayButton(false);
+        showPauseButton(true);
+        showLoader(false);
+      });
+
+      audio.addEventListener("waiting", event => {
+        showPlayButton(false);
+        showPauseButton(false);
+        showLoader(true);
+      });
+
+      audio.addEventListener("loadeddata", event => {
+        showPlayButton(true);
+        showPauseButton(true);
+        showLoader(false);
+      });
+
+      audio.addEventListener("playing", event => {
+        isPlaying = true;
+        showPlayButton(false);
+        showPauseButton(true);
+        showLoader(false);
+      });
+
+      showPlayButton(true);
+      showPauseButton(false);
+      showLoader(false);
+    }
+  </script>
+</body>
+
 </html>
