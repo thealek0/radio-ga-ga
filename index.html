@@ -445,6 +445,12 @@
     const pauseIconElement = document.getElementById("pause-icon");
     const loader = document.getElementById("loader");
 
+    const PAUSE_STATE = "pause";
+    const PLAY_STATE = "play";
+    const LOADING_STATE = "loading";
+
+    let currentState = PAUSE_STATE;
+
     let isPlaying = false;
 
     let mode = false;
@@ -454,48 +460,12 @@
     init();
 
     function play() {
-      showPlayButton(false);
-      showPauseButton(true);
       audio.load();
       audio.play();
     }
 
     function pause() {
-      showPlayButton(true);
-      showPauseButton(false);
       audio.pause();
-    }
-
-    function showPlayButton(state) {
-      if(isPlaying) {
-        return;
-      }
-
-      if (state) {
-        playIconElement.style.display = "block";
-        return;
-      }
-      playIconElement.style.display = "none";
-    }
-
-    function showPauseButton(state) {
-      if(!isPlaying) {
-        return;
-      }
-
-      if (state) {
-        pauseIconElement.style.display = "block";
-        return;
-      }
-      pauseIconElement.style.display = "none"
-    }
-
-    function showLoader(state) {
-      if (state) {
-        loader.style.display = "block";
-        return;
-      }
-      loader.style.display = "none"
     }
 
     function toggleBacgroundMode() {
@@ -526,6 +496,29 @@
         return;
       }
       return JSON.parse(data);
+    }
+
+    function switchButtonState(state) {
+      currentState = state;
+      switch (state) {
+        case PLAY_STATE:
+          pauseIconElement.style.display = "block";
+          playIconElement.style.display = "none";
+          loader.style.display = "none"
+          break;
+        case PAUSE_STATE:
+          pauseIconElement.style.display = "none";
+          playIconElement.style.display = "block";
+          loader.style.display = "none"
+          break;
+        case LOADING_STATE:
+          pauseIconElement.style.display = "none";
+          playIconElement.style.display = "none";
+          loader.style.display = "block"
+          break;
+        default:
+          break;
+      }
     }
 
     function init() {
@@ -574,65 +567,50 @@
 
       buttonPlay.addEventListener("click", event => {
         event.stopPropagation();
-        if (isPlaying) {
+        if(currentState === LOADING_STATE) {
+          return;
+        }
+
+        if (currentState === PLAY_STATE) {
           pause();
-          isPlaying = false;
           return;
         }
         play();
-        isPlaying = true;
       });
 
       audio.addEventListener("play", event => {
-        showPlayButton(false);
-        showPauseButton(true);
+        switchButtonState(PLAY_STATE);
       });
 
       audio.addEventListener("pause", event => {
-        showPlayButton(true);
-        showPauseButton(false);
+        switchButtonState(PAUSE_STATE);
       });
 
       audio.addEventListener("ended", event => {
-        showPlayButton(false);
-        showPauseButton(false);
-        showLoader(true);
+        switchButtonState(LOADING_STATE);
       });
 
       audio.addEventListener("seeking", event => {
-        showPlayButton(false);
-        showPauseButton(false);
-        showLoader(true);
+        switchButtonState(LOADING_STATE)
       });
 
       audio.addEventListener("seeked", event => {
-        showPlayButton(false);
-        showPauseButton(true);
-        showLoader(false);
+        switchButtonState(PLAY_STATE);
       });
 
       audio.addEventListener("waiting", event => {
-        showPlayButton(false);
-        showPauseButton(false);
-        showLoader(true);
+        switchButtonState(LOADING_STATE)
       });
 
       audio.addEventListener("loadeddata", event => {
-        showPlayButton(true);
-        showPauseButton(true);
-        showLoader(false);
+        switchButtonState(PLAY_STATE)
       });
 
       audio.addEventListener("playing", event => {
-        isPlaying = true;
-        showPlayButton(false);
-        showPauseButton(true);
-        showLoader(false);
+        switchButtonState(PLAY_STATE)
       });
 
-      showPlayButton(true);
-      showPauseButton(false);
-      showLoader(false);
+      switchButtonState(currentState)
     }
   </script>
 </body>
