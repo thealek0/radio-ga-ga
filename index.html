@@ -191,6 +191,23 @@
       outline: none;
     }
 
+    #volume-button {
+      border: none;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    #volume-button>#mute-icon {
+      display: none;
+    }
+
+    #volume-button:focus {
+      outline: none;
+    }
+
     #button {
       z-index: 1000;
       height: auto;
@@ -235,6 +252,61 @@
     .select:focus {
       outline: none;
     }
+
+    .volume {
+      margin-left: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 24px;
+    }
+
+    /* Range Input Styles */
+    input[type="range"] {
+      -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    input[type="range"]:focus {
+      outline: none;
+    }
+
+    /* Chrome, Safari, Opera, Edge Chromium styles */
+    input[type="range"]::-webkit-slider-runnable-track {
+      background-color: #c7c7c7;
+      border-radius: 0.5rem;
+      height: 0.5rem;  
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      margin-top: -4px;
+      border-radius: 50%;
+      background-color: #404040;
+      height: 1rem;
+      width: 1rem;
+    }
+
+    /* Firefox */
+    input[type="range"]::-moz-range-track {
+      background-color: #c7c7c7;
+      border-radius: 0.5rem;
+      height: 0.5rem;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      border: none;
+      border-radius: 0;
+      border-radius: 50%;
+      background-color: #404040;
+      height: 1rem;
+      width: 1rem;
+    }    
 
     #player {
       padding: 32px;
@@ -338,7 +410,6 @@
     <select id="selectStations" class="select"> </select>
     <div id="player">
       <button id="play">
-        </svg>
         <svg id="play-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
           <path d="m256 0c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256z"
             style="fill:#ffffff" />
@@ -373,6 +444,20 @@
           </g>
         </svg>
       </button>
+      <div class="volume">
+        <button id="volume-button">
+          <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#404040">
+            <path d="M0 0h24v24H0V0z" fill="none"/>
+            <path d="M4.34 2.93L2.93 4.34 7.29 8.7 7 9H3v6h4l5 5v-6.59l4.18 4.18c-.65.49-1.38.88-2.18 1.11v2.06c1.34-.3 2.57-.92 3.61-1.75l2.05 2.05 1.41-1.41L4.34 2.93zM10 15.17L7.83 13H5v-2h2.83l.88-.88L10 11.41v3.76zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zm-7-8l-1.88 1.88L12 7.76zm4.5 8c0-1.77-1.02-3.29-2.5-4.03v1.79l2.48 2.48c.01-.08.02-.16.02-.24z"/>
+          </svg>
+
+          <svg id="full-volume-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#404040">
+            <path d="M0 0h24v24H0V0z" fill="none"/>
+            <path d="M3 9v6h4l5 5V4L7 9H3zm7-.17v6.34L7.83 13H5v-2h2.83L10 8.83zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/>
+          </svg>
+        </button>
+        <input type="range" min="0" max="100" id="volume-input">
+      </div>
     </div>
     <button id="button">Shine mode - off</button>
   </div>
@@ -449,6 +534,10 @@
     const playIconElement = document.getElementById("play-icon");
     const pauseIconElement = document.getElementById("pause-icon");
     const loader = document.getElementById("loader");
+    const volumeButton = document.getElementById("volume-button");
+    const volumeInput = document.getElementById("volume-input");
+    const fullVolumeIconElement = document.getElementById("full-volume-icon");
+    const muteIconElement = document.getElementById("mute-icon");
 
     const PAUSE_STATE = "pause";
     const PLAY_STATE = "play";
@@ -457,6 +546,8 @@
     let currentState = PAUSE_STATE;
 
     let isPlaying = false;
+
+    let savedVolume = 50;
 
     let mode = false;
     const savedSelection = getSavedSelection();
@@ -526,7 +617,27 @@
       }
     }
 
+    function volumeInit() {
+      const volumeFromStorage = JSON.parse(localStorage.getItem('volume'));
+      if (volumeFromStorage || volumeFromStorage === 0) {
+        savedVolume = volumeFromStorage;
+        volumeInput.value = savedVolume;
+        audio.volume = savedVolume / 100
+
+        if (savedVolume > 0) {
+          fullVolumeIconElement.style.display = "block";
+          muteIconElement.style.display = "none";
+        } 
+        if (savedVolume === 0) {
+          fullVolumeIconElement.style.display = "none";
+          muteIconElement.style.display = "block";
+        }
+      }
+    }
+
     function init() {
+      volumeInit();
+      
       for (let i = 0; i < sites.length; i++) {
         const site = sites[i];
         const optionGroup = document.createElement("optgroup");
@@ -581,6 +692,38 @@
           return;
         }
         play();
+      });
+
+      volumeButton.addEventListener("click", event => {
+        event.stopPropagation();
+        if (volumeInput.value > 0) {
+          savedVolume = volumeInput.value;
+          volumeInput.value = 0;
+          audio.volume = 0;
+          fullVolumeIconElement.style.display = "none";
+          muteIconElement.style.display = "block";
+        } else {
+          volumeInput.value = savedVolume;
+          audio.volume = savedVolume / 100
+          fullVolumeIconElement.style.display = "block";
+          muteIconElement.style.display = "none";
+        }
+        localStorage.setItem('volume', volumeInput.value)
+      });
+
+      volumeInput.addEventListener("input", event => {
+        event.stopPropagation();
+        const volume = event.target.value;
+        audio.volume = volume / 100;
+        if (volume > 0) {
+          fullVolumeIconElement.style.display = "block";
+          muteIconElement.style.display = "none";
+          savedVolume = volume;
+        } else {
+          fullVolumeIconElement.style.display = "none";
+          muteIconElement.style.display = "block";
+        }
+        localStorage.setItem('volume', volumeInput.value)
       });
 
       audio.addEventListener("play", event => {
