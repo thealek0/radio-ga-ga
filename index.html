@@ -622,7 +622,6 @@
       if (volumeFromStorage || volumeFromStorage === 0) {
         savedVolume = volumeFromStorage;
         volumeInput.value = savedVolume;
-        audio.volume = savedVolume / 100
 
         if (savedVolume > 0) {
           fullVolumeIconElement.style.display = "block";
@@ -633,6 +632,8 @@
           muteIconElement.style.display = "block";
         }
       }
+      
+      audio.volume = savedVolume / 100;
     }
 
     function init() {
