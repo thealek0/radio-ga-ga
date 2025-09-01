@@ -727,6 +727,26 @@
         localStorage.setItem('volume', volumeInput.value)
       });
 
+      volumeInput.addEventListener("wheel", event => {
+        event.preventDefault();
+        const step = 5;
+        if (event.deltaY < 0) {
+          volumeInput.value = Math.min(100, parseInt(volumeInput.value) + step);
+        } else {
+          volumeInput.value = Math.max(0, parseInt(volumeInput.value) - step);
+        }
+        audio.volume = volumeInput.value / 100;
+        if (volumeInput.value > 0) {
+          fullVolumeIconElement.style.display = "block";
+          muteIconElement.style.display = "none";
+          savedVolume = volumeInput.value;
+        } else {
+          fullVolumeIconElement.style.display = "none";
+          muteIconElement.style.display = "block";
+        }
+        localStorage.setItem('volume', volumeInput.value);
+      });
+
       audio.addEventListener("play", event => {
         switchButtonState(PLAY_STATE);
       });
