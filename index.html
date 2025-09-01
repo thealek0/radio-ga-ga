@@ -153,9 +153,16 @@
     }
 
     body {
+      --base-gray: #404040;
+      --plain-text: var(--base-gray);
+
       width: 100%;
       height: 100%;
-      color: #404040;
+      color: var(--plain-text);
+    }
+
+    .plain-text {
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
     .content {
@@ -171,7 +178,7 @@
     }
 
     #logo > svg {
-      fill: #404040
+      fill: var(--base-gray)
     }
 
     #play {
@@ -211,7 +218,6 @@
     #button {
       z-index: 1000;
       height: auto;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-weight: 400;
       position: absolute;
       margin-bottom: 12px;
@@ -226,7 +232,6 @@
 
     #title {
       padding: 16px;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 12px;
       font-weight: 100;
       text-transform: uppercase;
@@ -235,7 +240,6 @@
     .select {
       z-index: 1000;
       width: auto;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 26px;
       font-weight: 600;
       border: none;
@@ -246,7 +250,7 @@
       -moz-appearance: none;
       text-align-last: center;
       text-transform: uppercase;
-      color: #404040;
+      color: var(--plain-text);
     }
 
     .select:focus {
@@ -254,7 +258,6 @@
     }
 
     .volume {
-      margin-left: 16px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -287,7 +290,7 @@
       appearance: none;
       margin-top: -4px;
       border-radius: 50%;
-      background-color: #404040;
+      background-color: var(--plain-text);
       height: 1rem;
       width: 1rem;
     }
@@ -303,7 +306,7 @@
       border: none;
       border-radius: 0;
       border-radius: 50%;
-      background-color: #404040;
+      background-color: var(--plain-text);
       height: 1rem;
       width: 1rem;
     }    
@@ -314,6 +317,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 16px;
     }
 
     .colorizer {
@@ -385,6 +389,64 @@
         background-color: #6bbf90;
       }
     }
+
+    @media screen and (min-aspect-ratio: 2/1) {
+      /* For 21:9 monitors */
+    }
+
+    @media screen and (device-aspect-ratio: 16/9) {
+      /* For 16:9 monitors */
+    }
+
+    @media screen and (device-aspect-ratio: 4/3) {
+      /* For 4:3 monitors */
+    }
+
+    @media screen and (min-height: 1440px) and (max-height: calc(2160px - 1px)) {
+      /* For Quad HD - 4K monitors */
+    }
+
+    @media screen and (min-height: 1080px) and (max-height: calc(1440px - 1px)) {
+      /* For Full HD - Quad HD monitors */
+    }
+
+    @media screen and (min-height: 720px) and (max-height: calc(1080px - 1px)) {
+      /* For HD - Full HD monitors */
+    }
+
+    @media screen and (min-width: 1200px) {
+      /* For desktop styles */
+    }
+
+    @media screen and (min-height: 1px) and (max-height: calc(720px - 1px)) {
+      /* For mobile devices */
+    }
+
+    @media screen and (min-width: 320px) and (max-width: 768px) and (orientation: portrait) {
+      /* For mobile devices in portrait orientation */
+      #player {
+        padding: 64px 0 0 0;
+        flex-direction: row-reverse;
+      }
+
+      #selectStations {
+        width: 100%;
+        border-radius: 0;
+      }
+    }
+
+    @media screen and (min-aspect-ratio: 2/1) and (max-width: 950px) and (orientation: landscape) {
+      /* For mobile devices in landscape orientation */
+    }
+
+    @media screen and (min-width: 768px) and (max-width: calc(1030px - 1px)) {
+      /* For tablet styles */
+    }
+
+    @media screen and (min-aspect-ratio: 1/2) and (min-width: 500px) and (orientation: portrait) {
+      /* For tablets in portrait orientation */
+    }
+
   </style>
   <audio preload="none"></audio>
   <span id="colored"></span>
@@ -406,8 +468,8 @@
         </g>
        </svg>
     </div>
-    <div id="title"></div>
-    <select id="selectStations" class="select"> </select>
+    <div id="title" class="plain-text"></div>
+    <select id="selectStations" class="select plain-text"> </select>
     <div id="player">
       <button id="play">
         <svg id="play-icon" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
@@ -459,7 +521,7 @@
         <input type="range" min="0" max="100" id="volume-input">
       </div>
     </div>
-    <button id="button">Shine mode - off</button>
+    <button id="button" class="plain-text">Shine mode - off</button>
   </div>
   <script>
     const sites = [
