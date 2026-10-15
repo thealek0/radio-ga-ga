@@ -5,7 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="referrer" content="no-referrer" />
   <title>Radio GA GA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -141,13 +145,13 @@
     }
 
     html {
-      height: 100%;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     #colored {
-      width: 100%;
-      height: 100%;
-      position: absolute;
+      position: fixed;
+      inset: 0;
       z-index: -1;
       background-color: #f2ebd5;
     }
@@ -156,8 +160,6 @@
       --base-gray: #404040;
       --plain-text: var(--base-gray);
 
-      width: 100%;
-      height: 100%;
       color: var(--plain-text);
     }
 
@@ -166,15 +168,21 @@
     }
 
     .content {
-      height: 100%;
+      box-sizing: border-box;
+      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
-      justify-content: center;
       flex-direction: column;
     }
 
     #logo {
+      margin-top: auto;
       padding: 40px;
+    }
+
+    #logo > svg {
+      display: block;
     }
 
     #logo > svg {
@@ -218,10 +226,10 @@
     #button {
       z-index: 1000;
       height: auto;
+      font-size: 14px;
       font-weight: 400;
-      position: absolute;
+      color: inherit;
       margin-bottom: 12px;
-      bottom: 0;
       border: none;
       border-radius: 30px;
       background-color: #ffffff73;
@@ -233,13 +241,16 @@
     #title {
       padding: 16px;
       font-size: 12px;
-      font-weight: 100;
+      font-weight: 300;
       text-transform: uppercase;
     }
 
     .select {
       z-index: 1000;
+      box-sizing: border-box;
       width: auto;
+      max-width: 100%;
+      text-overflow: ellipsis;
       font-size: 26px;
       font-weight: 600;
       border: none;
@@ -248,6 +259,7 @@
       border-radius: 30px;
       -webkit-appearance: none;
       -moz-appearance: none;
+      appearance: none;
       text-align-last: center;
       text-transform: uppercase;
       color: var(--plain-text);
@@ -270,6 +282,8 @@
     input[type="range"] {
       -webkit-appearance: none;
         appearance: none;
+        width: 120px;
+        margin: 0;
         background: transparent;
         cursor: pointer;
     }
@@ -312,6 +326,7 @@
     }    
 
     #player {
+      margin-bottom: auto;
       padding: 32px;
       flex-direction: row;
       display: flex;
@@ -430,13 +445,32 @@
       }
 
       #selectStations {
-        width: 100%;
-        border-radius: 0;
+        max-width: calc(100% - 32px);
       }
     }
 
     @media screen and (min-aspect-ratio: 2/1) and (max-width: 950px) and (orientation: landscape) {
       /* For mobile devices in landscape orientation */
+    }
+
+    @media screen and (max-height: 500px) {
+      /* Low screens: phones in landscape, small windows */
+      #logo {
+        padding: 12px;
+      }
+
+      #logo > svg {
+        width: 144px;
+        height: 72px;
+      }
+
+      #title {
+        padding: 8px;
+      }
+
+      #player {
+        padding: 16px;
+      }
     }
 
     @media screen and (min-width: 768px) and (max-width: calc(1030px - 1px)) {
@@ -528,60 +562,94 @@
       {
         name: "NRj",
         stations: {
-          "Энерджи": "https://pub0101.101.ru:8000/stream/air/mp3/256/99",
+          "Энерджи": "https://pub0101.101.ru/stream/air/aac/64/99",
         }
       },
       {
         name: "101.ru",
         stations: {
-          "Relax FM. Музыка для офиса": "https://pub0302.101.ru:8000/stream/trust/mp3/128/267",
-          "Relax FM. Музыка для медитации": "https://pub0302.101.ru:8000/stream/trust/mp3/128/461",
-          "Авторадио. Дискотека 90-х": "https://pub0302.101.ru:8000/stream/pro/aac/64/74",
-          "Deep House Dance": "https://pub0302.101.ru:8000/stream/pro/aac/64/406",
-          "Comedy Radio. Женский Стендап": "https://pub0302.101.ru:8000/stream/pro/aac/64/448",
-          "Comedy Radio. StandUP": "https://pub0302.101.ru:8000/stream/pro/aac/64/447",
-          "Sex": "https://pub0302.101.ru:8000/stream/pro/aac/64/27",
-          "Ambient": "https://pub0302.101.ru:8000/stream/pro/aac/64/23",
+          "Relax FM. Музыка для офиса": "https://pub0101.101.ru/stream/trust/mp3/128/267",
+          "Relax FM. Музыка для медитации": "https://pub0101.101.ru/stream/trust/mp3/128/461",
+          "Авторадио. Дискотека 90-х": "https://pub0101.101.ru/stream/pro/aac/64/74",
         }
       },
       {
         name: "noadsradio.ru",
         stations: {
-          "LoFI Radio": "https://live.lofiradio.ru/lofi_mp3_320",
-          "CHILLout Radio": "https://cast.chilloutradio.ru:8040/live",
           "Jazz Loft": "https://jazzloft.stream.laut.fm/jazzloft",
-          "Радио странствий": "https://listen2.myradio24.com/4156",
-          "Illinois Street Lounge": "https://ice2.somafm.com/illstreet-128-mp3",
           "Code Radio": "https://coderadio-admin-v2.freecodecamp.org/listen/coderadio/radio.mp3",
-          "Атмосфера": "https://listen10.myradio24.com/atmo",
-          "Velvet Ballads": "https://metromedia.live24.gr/velvetbaladsthess",
-          "Slow Radio": "https://bluford.torontocast.com/proxy/wynekpwy/slowradio",
-          "Slow Radio Gold": "https://bluford.torontocast.com/proxy/ezefpkbu/slowradiogold",
-          "Music Harmony": "https://misato.ru-hoster.com:8057/stream",
+          "Slow Radio": "https://stream1.slowradio.com/",
+          "Slow Radio Gold": "https://stream11.slowradio.com/",
           "Enigmatic Station": "https://listen2.myradio24.com/8226",
-          "Enigmatic 2 Sunshine": "https://radio.enigmatic.su:8105/radio",
           "Enigmatic 3 Magnetic chill": "https://radio.enigmatic.su:8005/radio",
-          "New Age Radio": "https://a7.radioheart.ru:9044/nonstop",
-          "Alex Lounge": "https://listen7.myradio24.com/avmarushak",
-          "Chillwawe & Retrowawe": "https://clubvid.xyz/level3",
-          "Ambient (день)": "https://radio.stereoscenic.com/ama-h",
-          "Ambient (ночь)": "https://radio.stereoscenic.com/asp-h",
+          "Ambient Sleeping Pill": "https://radio.stereoscenic.com/asp-h",
+          "a.m. ambient": "https://radio.stereoscenic.com/ama-h",
           "Lounge radio": "https://fr1.streamhosting.ch/lounge128.mp3",
-          "Chillout Crooze": "https://streaming.shoutcast.com/chillout-crooze-mp3",
-          "Easy Crooze": "https://streaming.shoutcast.com/easy-crooze-mp3",
-          "Luxury Lounge": "https://clubvid.xyz/level2",
-          "Звуки природы": "https://nature-rex.radioca.st/stream",
-          "Lolliradio Soft": "https://stream.lolliradio.net/lolli_soft.mp3",
-          "Relax Live": "https://stream-160.zeno.fm/up0tg8z405quv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ1cDB0Zzh6NDA1cXV2IiwiaG9zdCI6InN0cmVhbS0xNjAuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6ImNfQmlTMVNjU0VtQWl1M3lpeGp0ZkEiLCJpYXQiOjE3NTQ4MzEyMTIsImV4cCI6MTc1NDgzMTI3Mn0._tIf4Ub8TwtYP3jl6uwk-WczpMV8QPVX_xptr6zJ5Bw",
-          "Airport Lounge": "https://az1.mediacp.eu/listen/airport-lounge-radio/radio.mp3",
-          "Relax America Stereo": "https://radio.buenanube.net/radio/8070/radio.mp3",
-          "IP Music Slow": "https://live9.avf.ch/ipmusicslow320"
+          "Airport Lounge": "https://az1.mediacp.eu/listen/airport-lounge-radio/radio.mp3"
         }
       },
       {
         name: "hostingradio.ru",
         stations: {
-          "Jazz legends": "http://jfm1.hostingradio.ru:14536/jlstream.mp3"
+          "Европа Плюс": "https://ep256.hostingradio.ru:8052/europaplus256.mp3",
+          "Ретро FM": "https://retro.hostingradio.ru:8043/retro256.mp3",
+          "DFM": "https://dfm.hostingradio.ru/dfm96.aacp",
+          "DFM. Дискач 90-х": "https://dfm-disc90.hostingradio.ru/disc9096.aacp",
+          "Наше Радио": "https://nashe1.hostingradio.ru/nashe-128.mp3",
+          "Rock FM": "https://nashe1.hostingradio.ru/rock-128.mp3",
+          "Maximum": "https://maximum.hostingradio.ru/maximum128.mp3",
+          "Радио Ultra": "https://nashe1.hostingradio.ru/ultra-128.mp3",
+          "Радио JAZZ": "https://nashe1.hostingradio.ru/jazz-128.mp3",
+          "Jazz legends": "https://jfm1.hostingradio.ru:14536/jlstream.mp3",
+          "Серебряный Дождь": "https://silverrain.hostingradio.ru/silver128.mp3",
+          "Радио Monte Carlo": "https://montecarlo.hostingradio.ru/montecarlo128.mp3"
+        }
+      },
+      {
+        name: "Radio Record",
+        stations: {
+          "Record": "https://radiorecord.hostingradio.ru/rr_main96.aacp",
+          "Russian Mix": "https://radiorecord.hostingradio.ru/rus96.aacp",
+          "Супердискотека 90-х": "https://radiorecord.hostingradio.ru/sd9096.aacp",
+          "Chill-Out": "https://radiorecord.hostingradio.ru/chil96.aacp",
+          "Lo-Fi": "https://radiorecord.hostingradio.ru/lofi96.aacp",
+          "Synthwave": "https://radiorecord.hostingradio.ru/synth96.aacp",
+          "Deep": "https://radiorecord.hostingradio.ru/deep96.aacp",
+          "Rock": "https://radiorecord.hostingradio.ru/rock96.aacp"
+        }
+      },
+      {
+        name: "Radio Paradise",
+        stations: {
+          "Main Mix": "https://stream.radioparadise.com/mp3-192",
+          "Mellow Mix": "https://stream.radioparadise.com/mellow-192",
+          "Rock Mix": "https://stream.radioparadise.com/rock-192",
+          "Global Mix": "https://stream.radioparadise.com/global-192",
+          "Eclectic Mix": "https://stream.radioparadise.com/eclectic-192"
+        }
+      },
+      {
+        name: "Radio Swiss",
+        stations: {
+          "Radio Swiss Jazz": "https://stream.srg-ssr.ch/m/rsj/mp3_128",
+          "Radio Swiss Classic": "https://stream.srg-ssr.ch/m/rsc_de/mp3_128",
+          "Radio Swiss Pop": "https://stream.srg-ssr.ch/m/rsp/mp3_128"
+        }
+      },
+      {
+        name: "Worldwide",
+        stations: {
+          "KEXP Seattle": "https://kexp.streamguys1.com/kexp160.aac",
+          "NTS 2": "https://stream-relay-geo.ntslive.net/stream2",
+          "Nightwave Plaza": "https://radio.plaza.one/mp3",
+          "1.FM Chillout Lounge": "https://strm112.1.fm/chilloutlounge_mobile_mp3",
+          "Intense Radio": "https://secure.live-streams.nl/main",
+          "101 Smooth Jazz": "https://jking.cdnstream1.com/b22139_128mp3",
+          "Adroit Jazz Underground": "https://icecast.walmradio.com:8443/jazz",
+          "Classic Vinyl HD": "https://icecast.walmradio.com:8443/classic",
+          "Your Classical. Relax": "https://relax.stream.publicradio.org/relax.mp3",
+          "Your Classical. Peaceful Piano": "https://peacefulpiano.stream.publicradio.org/peacefulpiano.mp3",
+          "Venice Classic Radio": "https://uk2.streamingpulse.com/ssl/vcr1"
         }
       }
     ];
